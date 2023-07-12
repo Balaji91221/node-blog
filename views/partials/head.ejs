@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Balaji | <%= title %></title>
 
-    <link rel="stylesheet" href="/styles.css">
+   
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
       body{
@@ -13,38 +13,68 @@
         font-family: 'Noto Serif', serif;
         max-width: 1200px;
       }
-      p, h1, h2, h3, a, ul{
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-        color: #222;
+
+      img{
+        width: 10%;
+        
+
       }
-  
-      /* nav & footer styles */
-      nav{
+      .site-title{
+        margin-left: 30px;
+      }
+      .flex{
+        display: flex;
+        align-items: center;
+      }
+      nav {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: 60px;
         padding-bottom: 10px;
         border-bottom: 1px solid #ddd;
         text-transform: uppercase;
       }
-      nav ul{
+      
+      nav ul {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+        align-items: center; /* Change from align-items: flex-end; */
+        margin: 0; /* Add this line to remove default margin */
+        padding: 0; /* Add this line to remove default padding */
       }
-      nav li{
+      
+      nav li {
         list-style-type: none;
         margin-left: 20px;
       }
-      nav h1{
-        font-size: 3em;
-      }
-      nav p, nav a{
-        color: #777;
+      
+      nav p,
+      nav a {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        color: #000;
         font-weight: 300;
       }
+      
+      nav h1.x {
+        display: inline-block;
+        background: linear-gradient(#ff105f, #ffad06);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+      }
+      
+      p,  h2, h3, a, ul{
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        color: #222;
+      }
+      
+
       footer{
         color: #777;
         text-align: center;
@@ -61,7 +91,32 @@
         margin-left: 20px;
       }
   
-      /* index styles */
+     
+        /* index styles */
+    .blogs a{
+      display: block;
+      margin: 40px 0;
+      padding-left: 30px;
+      border-left: 6px solid crimson;
+    }
+    .blogs a:hover h3{
+      color: crimson;
+    }
+    .details{
+      position: relative;
+    }
+    .delete{
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 50%;
+      padding: 8px;
+    }
+    .delete:hover{
+      cursor: pointer;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+    }
+    
   
       /* details styles */
   

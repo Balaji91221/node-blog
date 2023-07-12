@@ -1,53 +1,43 @@
 const express = require('express');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
+const blogRoutes = require('./routes/blogRoutes');
+
+// express app
 const app = express();
 
-const dbURI = "mongodb+srv://cluster0.nwuffx9.mongodb.net/";
+// connect to mongodb & listen for requests
+const dbURI = 'mongodb+srv://Balaji91221:Balaji$15@cluster0.mvuhreg.mongodb.net/blog';
 
-// Set EJS as the view engine
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(result => app.listen(3000))
+  .catch(err => console.log(err));
+
+// register view engine
 app.set('view engine', 'ejs');
 
-// Listen for requests on port 3001
-app.listen(3000);
-
-app.use(morgan('dev'));
+// middleware & static files
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use((req, res, next) => {
+  res.locals.path = req.path;
+  next();
+});
 
-
-
-
-// Route for the home page
+// routes
 app.get('/', (req, res) => {
-    const blogs = [
-        {
-            title: 'Yoshi finds eggs',
-            snippet: 'Lorem ipsum dolor sit amet consectetur'
-        },
-        {
-            title: 'Mario finds stars',
-            snippet: 'Lorem ipsum dolor sit amet consectetur'
-        },
-        {
-            title: 'How to defeat bowser',
-            snippet: 'Lorem ipsum dolor sit amet consectetur'
-        }
-    ];
-    res.render('index', { title: 'Home', blogs });
+  res.redirect('/blogs');
 });
 
-
-
-// Route for the about page
 app.get('/about', (req, res) => {
-    res.render('about', { title: 'About' });
+  res.render('about', { title: 'About' });
 });
 
-// Route for creating a new blog (not recommended)
-app.get('/blogs/create', (req, res) => {
-    res.render('create', { title: 'Create a New Blog' });
-});
+// blog routes
+app.use('/blogs', blogRoutes);
 
 // 404 page
 app.use((req, res) => {
-    res.status(404).render('404', { title: '404' });
+  res.status(404).render('404', { title: '404' });
 });
